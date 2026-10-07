@@ -64,7 +64,7 @@ void loop() {
     Serial.print(" | RSSI: ");
     Serial.println(LoRa.packetRssi());
     String pacote = LoRa.readString();
-    String msg = "id="+ (String)contadorDePacotes + msg;
+    String msg = "id="+ (String)contadorDePacotes + pacote;
     msg.trim();
 
   //Envia os dados para a planilha
