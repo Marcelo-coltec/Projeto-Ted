@@ -15,6 +15,8 @@
 const char* ssid = "1REDLAB 2844";
 const char* password = "RedLabNet";
 
+int contadorDePacotes = 0;
+
 void setup() {
   Serial.begin(115200);
 
@@ -51,7 +53,7 @@ void loop() {
   
   if (packetSize) {
     //Pacote recebido
-    Serial.print("Pacote recebido: '");
+   // Serial.print("Pacote recebido: '");
     
     // Lê e imprime o conteúdo do pacote caractere por caractere
     //while (LoRa.available()) {
@@ -59,12 +61,16 @@ void loop() {
     //}
     
     //Imprime o RSSI (Received Signal Strength Indicator)
-    Serial.print("' | RSSI: ");
+    Serial.print(" | RSSI: ");
     Serial.println(LoRa.packetRssi());
+    String pacote = LoRa.readString();
+    String msg = "id="+ (String)contadorDePacotes + msg;
+    msg.trim();
 
   //Envia os dados para a planilha
-  String dados = "https://script.google.com/macros/s/AKfycbztv5itZEObHDr_4SUg-pufd0SnpCO6dgTg-PNIYBYyT-fTQtY4HKrrGAO0_yOcTSkmLA/exec?" + LoRa.readString();
+  String dados = "https://script.google.com/macros/s/AKfycbztv5itZEObHDr_4SUg-pufd0SnpCO6dgTg-PNIYBYyT-fTQtY4HKrrGAO0_yOcTSkmLA/exec?" + msg;
   PostMessage(dados);
+  contadorDePacotes++;
   delay(10000);
   }
   
@@ -74,6 +80,8 @@ void loop() {
 
 void PostMessage(String msg){
   HTTPClient http;
+
+  http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
   http.begin(msg);
 
 
@@ -82,7 +90,7 @@ void PostMessage(String msg){
   int httpResponseCode = http.GET();
   if (httpResponseCode == 200){
     Serial.print("Message sent successfully");
-    Serial.print(msg);
+    //Serial.print(msg);
   }
   else{
     Serial.print("HTTP response code: ");
