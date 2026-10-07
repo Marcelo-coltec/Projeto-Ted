@@ -1,6 +1,6 @@
 # Projeto Anemômetro
 
-GRUPO: Samuel Hanry Leal dos Santos, Marcelo Rodriguês Pezzini Teixeira, Júlia Cruz Menezes.
+GRUPO: Júlia Cruz Menezes, Marcelo Rodriguês Pezzini Teixeira, Samuel Hanry Leal dos Santos.
 
 Objetivos do projeto
 
