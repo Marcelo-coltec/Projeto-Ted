@@ -16,7 +16,7 @@
 
 DHT dht(DHTPIN, DHTTYPE);
 
-int contadorDePacotes = 0; // Variável para contar os pacotes enviados
+//int contadorDePacotes = 0; // Variável para contar os pacotes enviados
 
 // --- Constantes ---
 const float pi = 3.14159265;     //Número de pi
@@ -80,7 +80,7 @@ void loop(){
   windvelocity();
   RPMcalc();
   SpeedWind();
-  String dados = "id="+ (String)contadorDePacotes +"&KmVelocity=" + (String)speedwind + "&temperatureC=" + (String)dht.readTemperature() + "&humidity=" + (String)dht.readHumidity();
+  String dados = "&KmVelocity=" + (String)speedwind + "&temperatureC=" + (String)dht.readTemperature() + "&humidity=" + (String)dht.readHumidity();
 
 
 //Transmissão via rede LoRa
@@ -92,7 +92,7 @@ void loop(){
   
   LoRa.endPacket();
 
-  contadorDePacotes++; // Incrementa o contador
+  //contadorDePacotes++; // Incrementa o contador
 
   delay(delaytime);                        //taxa de atualização
   
