@@ -1,4 +1,4 @@
-# Projeto-Ted
+# Projeto Anemômetro
 
 GRUPO: Samuel Hanry Leal dos Santos, Marcelo Rodriguês Pezzini Teixeira, Júlia Cruz Menezes.
 
